@@ -31,5 +31,18 @@ function getApiInfo() {
     });
 }
 
-//create HTML elements for the current weather container
+//function to create card for 5 day forecast
+
+function createFiveDayCard(fiveDayForecastData) {
+
+    //create card element
+    const fiveDayCard = document.createElement('div');
+    fiveDayCard.classList.add('card')
+
+    //create header
+    const cardHeader = document.createElement('h4');
+    cardHeader.classList.add('card-header');
+
+}
+
 
