@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather Dashboard</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <header class="p-5 text-center text-white bg-primary">
+      <h1>Weather Dashboard</h1>
+    </header>
+    <main class="flex-row justify-center align-center col-auto p-4 bg-light">
+      <section class="card card-rounded col-7 bg-white">
+        <header class="card-header text-center">
+          <h2 class="text-white">
+            Search for a City:
+          </h2>
+        </header>
+        <div class="text-center pt-4">
+          <button class="btn btn-danger" id="fetch-button">
+            Search
+          </button>
+        </div>
+        <table class="card-body table mx-auto my-4">
+          <th>
+            <p class="my-4">Results</p>
+          </th>
+          <tbody id="repo-table" class="mx-auto text-center"></tbody>
+        </table>
+      </section>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./assets/js/script.js"></script>
+    </main>
+  </body>
+</html>
