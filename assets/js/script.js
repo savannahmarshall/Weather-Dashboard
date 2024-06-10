@@ -44,7 +44,8 @@ function displayCurrentWeather(data) {
 
     //create card element
     const weatherCard = document.createElement('div');
-    weatherCard.classList.add('card', 'mb-3',);
+    weatherCard.classList.add('card', 'mb-3', 'border-dark');
+    weatherCard.style.borderWidth = '2px';
 
     //create card body 
     const cardBody = document.createElement('div');
@@ -61,27 +62,25 @@ function displayCurrentWeather(data) {
 
     const temperatureElement = document.createElement('p');
     temperatureElement.classList.add('card-text');
-    temperatureElement.textContent = `Temperature: ${data.main.temp}°C`;
-
-    const weatherElement = document.createElement('p');
-    weatherElement.classList.add('card-text');
-    weatherElement.textContent = `Weather : ${data.weather[0].description}`;
+    const tempFahrenheit = (data.main.temp * 9 / 5) + 32; // Convert temperature to Fahrenheit
+    temperatureElement.textContent = `Temperature: ${tempFahrenheit.toFixed(2)}°F`;
 
     const humidityElement = document.createElement('p');
     humidityElement.classList.add('card-text');
-    humidityElement.textConent = `Humidity : ${data.main.humidity}%`;
+    humidityElement.textContent = `Humidity: ${data.main.humidity}%`;
 
     const windElement = document.createElement('p');
     windElement.classList.add('card-text');
-    windElement.textContent = `Wind Speed: ${data.wind.speed} m/s`;
+    const windMPH = data.wind.speed * 3600 / 1609.344; // Convert wind speed to MPH
+    windElement.textContent = `Wind Speed: ${windMPH.toFixed(2)} mph`;
 
     //append the card elements to the card body
     cardBody.appendChild(cityName);
     cardBody.appendChild(weatherIcon);
     cardBody.appendChild(temperatureElement);
-    cardBody.appendChild(weatherElement);
-    cardBody.appendChild(humidityElement);
     cardBody.appendChild(windElement);
+    cardBody.appendChild(humidityElement);
+   
 
     //Append card body to the card
     weatherCard.appendChild(cardBody);
@@ -103,17 +102,37 @@ function fetchFiveDayForecast(lat,lon) {
     });
 }
 
-
 // Function to display 5 day forecast
 function displayFiveDayForecast(data) {
     const forecast = document.getElementById('forecast');
     forecast.innerHTML = '';
+
+    // Create a container for the forecast
+    const forecastContainer = document.createElement('div');
+
+    // Create a title for the forecast
+    const title = document.createElement('h2');
+    title.textContent = '5 Day Forecast:';
+    title.classList.add('mb-3');
+    forecastContainer.appendChild(title);
+
+    // Create a flex container for the cards
+    const cardsContainer = document.createElement('div');
+    cardsContainer.classList.add('d-flex', 'flex-wrap'); // Bootstrap classes for flex and wrapping
+
+    // Iterate through the forecast data and create cards
     data.list
         .filter((item, index) => index % 8 === 0) // gets the forecast for every 24 hours
         .forEach(item => {
             const card = createFiveDayCard(item);
-            forecast.appendChild(card);
+            cardsContainer.appendChild(card);
         });
+
+    // Append the cards container to the forecast container
+    forecastContainer.appendChild(cardsContainer);
+
+    // Append the forecast container to the forecast section
+    forecast.appendChild(forecastContainer);
 }
 
 //function to create card for 5 day forecast
@@ -121,14 +140,15 @@ function displayFiveDayForecast(data) {
 function createFiveDayCard(data) {
     const date = new Date(data.dt_txt).toLocaleDateString();
     const temp = data.main.temp;
+    const humidity = data.main.humidity;
     const description = data.weather[0].description;
     const icon = data.weather[0].icon; 
 
-    //create card element
+    // Create card element
     const fiveDayCard = document.createElement('div');
-    fiveDayCard.classList.add('card', 'mb-2', 'dark-blue-bg');
+    fiveDayCard.classList.add('card', 'dark-blue-bg', 'mx-2');
 
-    //create card body
+    // Create card body
     const cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
 
@@ -136,26 +156,34 @@ function createFiveDayCard(data) {
     weatherIcon.src =`https://openweathermap.org/img/wn/${icon}@2x.png`;
     weatherIcon.alt = description;
 
-    //create elements for card body
+    // Create elements for card body
     const cardTitle = document.createElement('h5');
     cardTitle.classList.add('card-title');
     cardTitle.textContent = date;
 
     const temperatureElement = document.createElement('p');
     temperatureElement.classList.add('card-text');
-    temperatureElement.textContent = `Temperature: ${temp}°C`;
+    const tempFahrenheit = (temp * 9 / 5) + 32; // Convert temperature to Fahrenheit
+    temperatureElement.textContent = `Temp: ${tempFahrenheit.toFixed(2)}°F`;
 
-    const descriptionElement = document.createElement('p');
-    descriptionElement.classList.add('card-text');
-    descriptionElement.textContent = `Weather: ${description}`;
+    const humidityElement = document.createElement('p');
+    humidityElement.classList.add('card-text');
+    humidityElement.textContent = `Humidity: ${humidity}%`;
 
-    //Append elements to the card body
+    const windElement = document.createElement('p');
+    windElement.classList.add('card-text');
+    const windMPH = data.wind.speed * 3600 / 1609.344; // Convert wind speed to MPH
+    windElement.textContent = `Wind: ${windMPH.toFixed(2)} MPH`;
+
+    // Append elements to the card body
     cardBody.appendChild(cardTitle);
     cardBody.appendChild(weatherIcon);
     cardBody.appendChild(temperatureElement);
-    cardBody.appendChild(descriptionElement);
+    cardBody.appendChild(windElement);
+    cardBody.appendChild(humidityElement);
+   
 
-    //Append card body to the card
+    // Append card body to the card
     fiveDayCard.appendChild(cardBody);
 
     return fiveDayCard;
