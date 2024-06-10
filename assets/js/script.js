@@ -42,6 +42,8 @@ function displayCurrentWeather(data) {
     const currentWeather = document.getElementById('current-weather');
     currentWeather.innerHTML = '';
 
+    console.log(data);
+
     //create card element
     const weatherCard = document.createElement('div');
     weatherCard.classList.add('card', 'mb-3', 'border-dark');
@@ -53,8 +55,10 @@ function displayCurrentWeather(data) {
 
     //create and add elements to the card body
     const cityName = document.createElement('h4');
-    cityName.classList.add('card-title');
-    cityName.textContent = data.name;
+    cityName.classList.add('card-title',);
+    const date = new Date(data.dt * 1000); // Convert UNIX timestamp to milliseconds
+    cityName.innerHTML = `<strong>${data.name} (${date.toLocaleDateString()})</strong>`; // Display city name and date
+
 
     const weatherIcon = document.createElement('img');
     weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
@@ -62,7 +66,7 @@ function displayCurrentWeather(data) {
 
     const temperatureElement = document.createElement('p');
     temperatureElement.classList.add('card-text');
-    const tempFahrenheit = (data.main.temp * 9 / 5) + 32; // Convert temperature to Fahrenheit
+    const tempFahrenheit = (data.main.temp -273.15) * 9 / 5 + 32; // Convert temperature to Fahrenheit
     temperatureElement.textContent = `Temperature: ${tempFahrenheit.toFixed(2)}°F`;
 
     const humidityElement = document.createElement('p');
@@ -71,8 +75,8 @@ function displayCurrentWeather(data) {
 
     const windElement = document.createElement('p');
     windElement.classList.add('card-text');
-    const windMPH = data.wind.speed * 3600 / 1609.344; // Convert wind speed to MPH
-    windElement.textContent = `Wind Speed: ${windMPH.toFixed(2)} mph`;
+    const windMPH = (data.wind.speed) * 2.23694 // Convert wind speed to MPH
+    windElement.textContent = `Wind: ${windMPH.toFixed(2)} MPH`;
 
     //append the card elements to the card body
     cardBody.appendChild(cityName);
