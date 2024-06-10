@@ -39,8 +39,51 @@ function getApiInfo(event) {
 
 //function for displaying current weather 
 function displayCurrentWeather(data) {
-    const currentWeather =document.getElementById('current-weather');
+    const currentWeather = document.getElementById('current-weather');
     currentWeather.innerHTML = '';
+
+    //create card element
+    const weatherCard = document.createElement('div');
+    weatherCard.classList.add('card', 'mb-3');
+
+    //create card body 
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
+
+    //create and add elements to the card body
+    const cardTitle = document.createElement('h4');
+    cardTitle.classList.add('card-title');
+    cardTitle.textContent = data.name;
+
+    const temperatureElement = document.createElement('p');
+    temperatureElement.classList.add('card-text');
+    temperatureElement.textContent = `Temperature: ${data.main.temp}°C`;
+
+    const weatherElement = document.createElement('p');
+    weatherElement.classList.add('card-text');
+    weatherElement.textContent = `Weather : ${data.weather[0].description}`;
+
+    const humidityElement = document.createElement('p');
+    humidityElement.classList.add('card-text');
+    humidityElement.textConent = `Humidity : ${data.main.humidity}%`;
+
+    const windElement = document.createElement('p');
+    windElement.classList.add('card-text');
+    windElement.textContent = `Wind Speed: ${data.wind.speed} m/s`;
+
+    //append the card elements to the card body
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(temperatureElement);
+    cardBody.appendChild(weatherElement);
+    cardBody.appendChild(humidityElement);
+    cardBody.appendChild(windElement);
+
+    //Append card body to the card
+    weatherCard.appendChild(cardBody);
+
+    //Append the card  to the current weather container
+    currentWeather.appendChild(weatherCard);
+
 }
 
 //function to fetch 5 day forecase info
@@ -77,20 +120,28 @@ function createFiveDayCard(data) {
 
     //create card element
     const fiveDayCard = document.createElement('div');
-    fiveDayCard.classList.add('card')
+    fiveDayCard.classList.add('card', 'mb-2');
+
+    //create card content
+    fiveDayCard.innerHTML = `
+    <       <h5 class="card-title">${date}</h5>
+            <p class="card-text">Temperature: ${temp}°C</p>
+            <p class="card-text">Weather: ${description}</p>
+        </div>
+    `;
 
     //create header
-    const cardHeader = document.createElement('h4');
-    cardHeader.classList.add('card-header');
+    const cardHeader = document.createElement('h5');
+    // cardHeader.classList.add('card-header');
 
-    card.innerHTML = '';
+    // card.innerHTML = '';
 
 
     return fiveDayCard;
 }
  
 //function for saving cities to search history
-function addToSearchHistory(city) {
+function saveToSearchHistory(city) {
     const searchHistory = document.getElementById('search-history');
     const historyItem = document.getElementById('button');
     historyItem.classList.add('list-group-item', 'list-group-item-action');
