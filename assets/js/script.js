@@ -51,9 +51,13 @@ function displayCurrentWeather(data) {
     cardBody.classList.add('card-body');
 
     //create and add elements to the card body
-    const cardTitle = document.createElement('h4');
-    cardTitle.classList.add('card-title');
-    cardTitle.textContent = data.name;
+    const cityName = document.createElement('h4');
+    cityName.classList.add('card-title');
+    cityName.textContent = data.name;
+
+    const weatherIcon = document.createElement('img');
+    weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
+    weatherIcon.alt = data.weather[0].description;
 
     const temperatureElement = document.createElement('p');
     temperatureElement.classList.add('card-text');
@@ -72,7 +76,8 @@ function displayCurrentWeather(data) {
     windElement.textContent = `Wind Speed: ${data.wind.speed} m/s`;
 
     //append the card elements to the card body
-    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(cityName);
+    cardBody.appendChild(weatherIcon);
     cardBody.appendChild(temperatureElement);
     cardBody.appendChild(weatherElement);
     cardBody.appendChild(humidityElement);
@@ -117,6 +122,7 @@ function createFiveDayCard(data) {
     const date = new Date(data.dt_txt).toLocaleDateString();
     const temp = data.main.temp;
     const description = data.weather[0].description;
+    const icon = data.weather[0].icon; 
 
     //create card element
     const fiveDayCard = document.createElement('div');
@@ -125,6 +131,10 @@ function createFiveDayCard(data) {
     //create card body
     const cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
+
+    const weatherIcon = document.createElement('img');
+    weatherIcon.src =`https://openweathermap.org/img/wn/${icon}@2x.png`;
+    weatherIcon.alt = description;
 
     //create elements for card body
     const cardTitle = document.createElement('h5');
@@ -141,6 +151,7 @@ function createFiveDayCard(data) {
 
     //Append elements to the card body
     cardBody.appendChild(cardTitle);
+    cardBody.appendChild(weatherIcon);
     cardBody.appendChild(temperatureElement);
     cardBody.appendChild(descriptionElement);
 
