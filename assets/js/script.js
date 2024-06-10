@@ -44,7 +44,7 @@ function displayCurrentWeather(data) {
 
     //create card element
     const weatherCard = document.createElement('div');
-    weatherCard.classList.add('card', 'mb-3');
+    weatherCard.classList.add('card', 'mb-3',);
 
     //create card body 
     const cardBody = document.createElement('div');
@@ -120,22 +120,32 @@ function createFiveDayCard(data) {
 
     //create card element
     const fiveDayCard = document.createElement('div');
-    fiveDayCard.classList.add('card', 'mb-2');
+    fiveDayCard.classList.add('card', 'mb-2', 'dark-blue-bg');
 
-    //create card content
-    fiveDayCard.innerHTML = `
-    <       <h5 class="card-title">${date}</h5>
-            <p class="card-text">Temperature: ${temp}°C</p>
-            <p class="card-text">Weather: ${description}</p>
-        </div>
-    `;
+    //create card body
+    const cardBody = document.createElement('div');
+    cardBody.classList.add('card-body');
 
-    //create header
-    const cardHeader = document.createElement('h5');
-    // cardHeader.classList.add('card-header');
+    //create elements for card body
+    const cardTitle = document.createElement('h5');
+    cardTitle.classList.add('card-title');
+    cardTitle.textContent = date;
 
-    // card.innerHTML = '';
+    const temperatureElement = document.createElement('p');
+    temperatureElement.classList.add('card-text');
+    temperatureElement.textContent = `Temperature: ${temp}°C`;
 
+    const descriptionElement = document.createElement('p');
+    descriptionElement.classList.add('card-text');
+    descriptionElement.textContent = `Weather: ${description}`;
+
+    //Append elements to the card body
+    cardBody.appendChild(cardTitle);
+    cardBody.appendChild(temperatureElement);
+    cardBody.appendChild(descriptionElement);
+
+    //Append card body to the card
+    fiveDayCard.appendChild(cardBody);
 
     return fiveDayCard;
 }
