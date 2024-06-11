@@ -193,11 +193,11 @@ function createFiveDayCard(data) {
     return fiveDayCard;
 }
  
-//function for saving cities to search history
-function saveToSearchHistory(city) {
+// Function to add city to search history and create a button for it
+function addToSearchHistory(city) {
     const searchHistory = document.getElementById('search-history');
-    const historyItem = document.getElementById('button');
-    historyItem.classList.add('list-group-item', 'list-group-item-action');
+    const historyItem = document.createElement('button');
+    historyItem.classList.add('list-group-item', 'list-group-item-action', 'button-color');
     historyItem.textContent = city;
     historyItem.addEventListener('click', () => fetchWeatherData(city));
     searchHistory.appendChild(historyItem);

@@ -9,58 +9,50 @@
   </head>
   <body>
     <header class="p-5 text-center text-white bg-info">
-      <h1>Weather Dashboard</h1>
+        <h1>Weather Dashboard</h1>
     </header>
-   <main>
-    <div class="container-fluid">
-        <div class="row mt-3">
-            <div class="col-md-3">
-                <div class="container-fluid">
-                    <h2 class="mb-2" style="bold">Search for a City:</h2>
-                    <!-- Search Form -->
-                    <form id="city-search-form" class="mb-4">
-                        <div class="form-group">
-                            <input type="text" id="city-input" class="form-control" placeholder="Enter city name...">
-                        </div>
-                        <div class="form-group">
-                            <button id="submitButton" type="submit" class="btn btn-primary btn-block">Search</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="container-fluid">
-                    <div id="search-history" class="list-group">
-                        <div class="card-body">
+    <main>
+        <div class="container-fluid">
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <div class="container-fluid">
+                        <h2 class="mb-2">Search for a City:</h2>
+                        <!-- Search Form -->
+                        <form id="city-search-form" class="mb-4">
+                            <div class="form-group">
+                                <input type="text" id="city-input" class="form-control" placeholder="Enter city name...">
+                            </div>
+                            <div class="form-group">
+                                <button id="submitButton" type="submit" class="btn btn-primary btn-block">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="container-fluid">
+                        <h3 class="mb-2">Search History</h3>
+                        <div id="search-history" class="list-group">
                             <!-- Display search history here -->
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-9">
-                <div class="container-fluid">
-                    <div id="current-weather" class="mb-4">
-                        <div class="card-body">
+                <div class="col-md-9">
+                    <div class="container-fluid">
+                        <div id="current-weather" class="mb-4">
                             <!-- Display current weather conditions here -->
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="row mt-3">
-            <div class="col-md-9 offset-md-3">
-                <div class="container-fluid">
-                    <div id="forecast" class="row">
-                        <div class="card-body">
+            <div class="row mt-3">
+                <div class="col-md-9 offset-md-3">
+                    <div class="container-fluid">
+                        <div id="forecast" class="row">
                             <!-- Display 5-day forecast here -->
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</main>
-
-
-
+    </main>
 
     <script src="./assets/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

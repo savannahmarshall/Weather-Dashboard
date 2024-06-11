@@ -1,5 +1,11 @@
 /* Custom class for dark blue background for 5 day cards*/
 .dark-blue-bg {
-background-color: #283593;
+background-color: #1d2fbd;
 color:white;
+}
+
+.button-color {
+    background-color: #41b4fc;
+    color:white;
+    text-align:center;
 }
