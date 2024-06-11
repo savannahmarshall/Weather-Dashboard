@@ -117,7 +117,7 @@ function displayFiveDayForecast(data) {
     // Create a title for the forecast
     const title = document.createElement('h2');
     title.textContent = '5 Day Forecast:';
-    title.classList.add('mb-3');
+    title.classList.add('mb-3', 'font-weight-bold');
     forecastContainer.appendChild(title);
 
     // Create a flex container for the cards
@@ -197,7 +197,7 @@ function createFiveDayCard(data) {
 function addToSearchHistory(city) {
     const searchHistory = document.getElementById('search-history');
     const historyItem = document.createElement('button');
-    historyItem.classList.add('list-group-item', 'list-group-item-action', 'button-color');
+    historyItem.classList.add('list-group-item', 'list-group-item-action', 'button-style');
     historyItem.textContent = city;
     historyItem.addEventListener('click', () => fetchWeatherData(city));
     searchHistory.appendChild(historyItem);

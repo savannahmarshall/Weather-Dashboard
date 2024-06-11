@@ -4,8 +4,27 @@ background-color: #1d2fbd;
 color:white;
 }
 
-.button-color {
+.button-style {
     background-color: #41b4fc;
     color:white;
     text-align:center;
+    margin-bottom: 10px;
+    border:none;
+    border-radius: 15px; 
+    padding: 10px 20px; 
+}
+
+.button-style:hover {
+    background-color: rgb(111, 170, 213)
+}
+
+#search-history-container {
+    max-height: 500px; /* Set a maximum height */
+    overflow-y: auto;  /* Enable vertical scrolling */
+    margin-bottom: 30px;
+    padding: 10px;
+}
+
+.card {
+    max-width: 100%; /* Ensure cards do not exceed a certain width */
 }

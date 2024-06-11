@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
   <body>
-    <header class="p-5 text-center text-white bg-info">
+    <header class="p-4 text-center text-white bg-info">
         <h1>Weather Dashboard</h1>
     </header>
-    <main>
+       <main>
         <div class="container-fluid">
             <div class="row mt-3">
                 <div class="col-md-3">
                     <div class="container-fluid">
-                        <h2 class="mb-2">Search for a City:</h2>
+                        <h2 class="mb-2 font-weight">Search for a City:</h2>
                         <!-- Search Form -->
                         <form id="city-search-form" class="mb-4">
                             <div class="form-group">
@@ -27,8 +27,7 @@
                             </div>
                         </form>
                     </div>
-                    <div class="container-fluid">
-                        <h3 class="mb-2">Search History</h3>
+                    <div class="container-fluid" id="search-history-container">
                         <div id="search-history" class="list-group">
                             <!-- Display search history here -->
                         </div>
@@ -39,12 +38,6 @@
                         <div id="current-weather" class="mb-4">
                             <!-- Display current weather conditions here -->
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-md-9 offset-md-3">
-                    <div class="container-fluid">
                         <div id="forecast" class="row">
                             <!-- Display 5-day forecast here -->
                         </div>
