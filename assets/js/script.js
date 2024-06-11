@@ -14,6 +14,8 @@ function getApiInfo(event) {
     if (cityInput) {
         fetchWeatherData(cityInput);
         addToSearchHistory(cityInput);
+
+        document.getElementById('city-input').value = '';
     }
 
 }
@@ -37,36 +39,53 @@ function getApiInfo(event) {
     });
 }
 
-//function for displaying current weather 
+// Function for displaying current weather 
 function displayCurrentWeather(data) {
     const currentWeather = document.getElementById('current-weather');
     currentWeather.innerHTML = '';
 
     console.log(data);
 
-    //create card element
+    // Create card element
     const weatherCard = document.createElement('div');
     weatherCard.classList.add('card', 'mb-3', 'border-dark');
     weatherCard.style.borderWidth = '2px';
 
-    //create card body 
+    // Create card body 
     const cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
 
-    //create and add elements to the card body
+    // Create a container for the city name, date, and weather icon
+    const cityInfoContainer = document.createElement('div');
+    cityInfoContainer.classList.add('city-info-container');
+    cityInfoContainer.style.display = 'flex'; // Set display to flex
+    cityInfoContainer.style.alignItems = 'center'; // Align items vertically centered
+
+    // Create and add elements to the city info container
     const cityName = document.createElement('h4');
-    cityName.classList.add('card-title',);
+    cityName.classList.add('card-title');
     const date = new Date(data.dt * 1000); // Convert UNIX timestamp to milliseconds
     cityName.innerHTML = `<strong>${data.name} (${date.toLocaleDateString()})</strong>`; // Display city name and date
-
 
     const weatherIcon = document.createElement('img');
     weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
     weatherIcon.alt = data.weather[0].description;
 
+    // Adjust size of weather icon
+    weatherIcon.style.width = '50px';
+    weatherIcon.style.height = '50px';
+
+    // Append city name and weather icon to the city info container
+    cityInfoContainer.appendChild(cityName);
+    cityInfoContainer.appendChild(weatherIcon);
+
+    // Append the city info container to the card body
+    cardBody.appendChild(cityInfoContainer);
+
+    // Create and add other elements to the card body
     const temperatureElement = document.createElement('p');
     temperatureElement.classList.add('card-text');
-    const tempFahrenheit = (data.main.temp -273.15) * 9 / 5 + 32; // Convert temperature to Fahrenheit
+    const tempFahrenheit = (data.main.temp - 273.15) * 9 / 5 + 32; // Convert temperature to Fahrenheit
     temperatureElement.textContent = `Temperature: ${tempFahrenheit.toFixed(2)}°F`;
 
     const humidityElement = document.createElement('p');
@@ -75,23 +94,19 @@ function displayCurrentWeather(data) {
 
     const windElement = document.createElement('p');
     windElement.classList.add('card-text');
-    const windMPH = (data.wind.speed) * 2.23694 // Convert wind speed to MPH
+    const windMPH = (data.wind.speed) * 2.23694; // Convert wind speed to MPH
     windElement.textContent = `Wind: ${windMPH.toFixed(2)} MPH`;
 
-    //append the card elements to the card body
-    cardBody.appendChild(cityName);
-    cardBody.appendChild(weatherIcon);
+    // Append the other elements to the card body
     cardBody.appendChild(temperatureElement);
     cardBody.appendChild(windElement);
     cardBody.appendChild(humidityElement);
-   
 
-    //Append card body to the card
+    // Append card body to the card
     weatherCard.appendChild(cardBody);
 
-    //Append the card  to the current weather container
+    // Append the card to the current weather container
     currentWeather.appendChild(weatherCard);
-
 }
 
 //function to fetch 5 day forecase info
@@ -115,9 +130,10 @@ function displayFiveDayForecast(data) {
     const forecastContainer = document.createElement('div');
 
     // Create a title for the forecast
-    const title = document.createElement('h2');
+    const title = document.createElement('h3');
     title.textContent = '5 Day Forecast:';
     title.classList.add('mb-3', 'font-weight-bold');
+    title.setAttribute('style', 'margin-left:15px;');
     forecastContainer.appendChild(title);
 
     // Create a flex container for the cards
@@ -150,7 +166,7 @@ function createFiveDayCard(data) {
 
     // Create card element
     const fiveDayCard = document.createElement('div');
-    fiveDayCard.classList.add('card', 'dark-blue-bg', 'mx-2');
+    fiveDayCard.classList.add('card', 'dark-blue-bg', 'mx-3');
 
     // Create card body
     const cardBody = document.createElement('div');
@@ -159,6 +175,10 @@ function createFiveDayCard(data) {
     const weatherIcon = document.createElement('img');
     weatherIcon.src =`https://openweathermap.org/img/wn/${icon}@2x.png`;
     weatherIcon.alt = description;
+
+    //adjust the size of the weather icon
+    weatherIcon.style.width = '50px';
+    weatherIcon.style.width = '50px';
 
     // Create elements for card body
     const cardTitle = document.createElement('h5');
@@ -197,7 +217,7 @@ function createFiveDayCard(data) {
 function addToSearchHistory(city) {
     const searchHistory = document.getElementById('search-history');
     const historyItem = document.createElement('button');
-    historyItem.classList.add('list-group-item', 'list-group-item-action', 'button-style');
+    historyItem.classList.add('button-style');
     historyItem.textContent = city;
     historyItem.addEventListener('click', () => fetchWeatherData(city));
     searchHistory.appendChild(historyItem);
