@@ -17,8 +17,8 @@ Please click [here](https://savannahmarshall.github.io/Weather-Dashboard/) for t
 
 ## Credits
 * JavaScript
-* OpenWeather API
-* Bootstrap
+* [OpenWeather API](https://openweathermap.org/forecast5)
+* [Bootstrap]((https://getbootstrap.com/))
 
 ## License
 N/A
