@@ -11,7 +11,7 @@ No installation steps are required for this project as it is a web-based applica
 ## Usage
 Upon loading this application, you will see a text box in the upper left corner that prompts the user to enter a city name. After you enter your desired city, select the submit button. You will now see that there is a box that displays current weather conditions for that city with the city name, date, an icon representation of the weather conditions, the temperature, wind speed and humidity. The temperature should be displayed in Farenheit and wind speed should be displayed in MPH. Beneath this box, you will see 5 different dark blue cards that represent the 5 day forecast for your selected city. These cards display the same information listed above, minus the city name. On the left hand side of the page, you will notice that your recent city searches are saved. You can select any of these saved cities to see the current and future weather conditions of that city displayed once more. Finally, your search history for saved cities will persist on upon page refresh and in local storage. 
 
-Please click [here]() for the deployed application.
+Please click [here](https://savannahmarshall.github.io/Weather-Dashboard/) for the deployed application.
 
 ![screenshot of weather dashboard](https://github.com/savannahmarshall/Weather-Dashboard/blob/main/assets/challenge-6%20screenshot.png)
 
