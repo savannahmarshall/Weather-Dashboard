@@ -16,9 +16,9 @@ Please click [here]() for the deployed application.
 ![alt text](screenshot of application)
 
 ## Credits
-*JavaScript
-*OpenWeather API
-*Bootstrap
+* JavaScript
+* OpenWeather API
+* Bootstrap
 
 ## License
 N/A
