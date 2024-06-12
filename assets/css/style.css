@@ -9,6 +9,13 @@
 .header h1 {
     margin:0;
     margin-right: 450px;
+    font-weight:bold;
+}
+
+/* line divider styling */
+.line-divider {
+    border-top: 2px solid rgb(170, 170, 170); /* Adjust the color and thickness as needed */
+    margin: 25px 0; /* Add margin to separate the line from other elements */  
 }
 
 /* styling for 5 day forecast cards */
@@ -17,7 +24,7 @@ background-color: #1d2fbd;
 color:white;
 }
 
-/* button styling for search history buttons */
+/* styling for search history buttons and container */
 .button-style {
     background-color: #41b4fc;
     color:white;
@@ -38,8 +45,4 @@ color:white;
     overflow-y: auto;  /* Enable vertical scrolling */
     margin-bottom: 30px;
     padding: 10px;
-}
-
-.card {
-    max-width: 100%; /* Ensure cards do not exceed a certain width */
 }

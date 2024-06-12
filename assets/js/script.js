@@ -62,7 +62,7 @@ function displayCurrentWeather(data) {
     cityInfoContainer.style.alignItems = 'center'; // Align items vertically centered
 
     // Create and add elements to the city info container
-    const cityName = document.createElement('h4');
+    const cityName = document.createElement('h2');
     cityName.classList.add('card-title');
     const date = new Date(data.dt * 1000); // Convert UNIX timestamp to milliseconds
     cityName.innerHTML = `<strong>${data.name} (${date.toLocaleDateString()})</strong>`; // Display city name and date
@@ -86,11 +86,11 @@ function displayCurrentWeather(data) {
     const temperatureElement = document.createElement('p');
     temperatureElement.classList.add('card-text');
     const tempFahrenheit = (data.main.temp - 273.15) * 9 / 5 + 32; // Convert temperature to Fahrenheit
-    temperatureElement.textContent = `Temperature: ${tempFahrenheit.toFixed(2)}°F`;
+    temperatureElement.textContent = `Temperature: ${tempFahrenheit.toFixed(2)} °F`;
 
     const humidityElement = document.createElement('p');
     humidityElement.classList.add('card-text');
-    humidityElement.textContent = `Humidity: ${data.main.humidity}%`;
+    humidityElement.textContent = `Humidity: ${data.main.humidity} %`;
 
     const windElement = document.createElement('p');
     windElement.classList.add('card-text');
@@ -188,11 +188,11 @@ function createFiveDayCard(data) {
     const temperatureElement = document.createElement('p');
     temperatureElement.classList.add('card-text');
     const tempFahrenheit = (temp * 9 / 5) + 32; // Convert temperature to Fahrenheit
-    temperatureElement.textContent = `Temp: ${tempFahrenheit.toFixed(2)}°F`;
+    temperatureElement.textContent = `Temp: ${tempFahrenheit.toFixed(2)} °F`;
 
     const humidityElement = document.createElement('p');
     humidityElement.classList.add('card-text');
-    humidityElement.textContent = `Humidity: ${humidity}%`;
+    humidityElement.textContent = `Humidity: ${humidity} %`;
 
     const windElement = document.createElement('p');
     windElement.classList.add('card-text');
@@ -213,12 +213,49 @@ function createFiveDayCard(data) {
     return fiveDayCard;
 }
  
-// Function to add city to search history and create a button for it
+// Function to add city to search history and local storage
 function addToSearchHistory(city) {
     const searchHistory = document.getElementById('search-history');
     const historyItem = document.createElement('button');
     historyItem.classList.add('button-style');
     historyItem.textContent = city;
-    historyItem.addEventListener('click', () => fetchWeatherData(city));
+    historyItem.addEventListener('click', () => {
+        fetchWeatherData(city);
+        // Store city in local storage
+        saveToLocalStorage(city);
+    });
     searchHistory.appendChild(historyItem);
 }
+
+//function to save city to local storage
+function saveToLocalStorage(city) {
+    let searchHistory = localStorage.getItem('searchHistory');
+    if (!searchHistory) {
+        searchHistory = [];
+    } else {
+        searchHistory = JSON.parse(searchHistory);
+    }
+    //add city to search history
+    searchHistory.push(city);
+    //save updated search history to local storage
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+}
+
+function retrieveFromLocalStorage() {
+    let searchHistory = localStorage.getItem('searchHistory');
+    if (!searchHistory) {
+        searchHistory = [];
+    } else {
+        searchHistory = JSON.parse(searchHistory);
+    }
+    if (searchHistory) {
+        // Add each city from local storage to search history
+        searchHistory.forEach(city => {
+            addToSearchHistory(city);
+        });
+    }
+}
+
+// Call retrieveFromLocalStorage to populate search history on page load
+retrieveFromLocalStorage();
+
