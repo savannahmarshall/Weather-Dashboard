@@ -16,7 +16,7 @@ Please click [here](https://savannahmarshall.github.io/Weather-Dashboard/) for t
 ![screenshot of weather dashboard](https://github.com/savannahmarshall/Weather-Dashboard/blob/main/assets/challenge-6%20screenshot.png)
 
 ## Credits
-* [JavaScript](https://getbootstrap.com](https://www.javascript.com/)
+* [JavaScript](https://www.javascript.com/)
 * [OpenWeather API](https://openweathermap.org/forecast5)
 * [Bootstrap](https://getbootstrap.com/)
 
