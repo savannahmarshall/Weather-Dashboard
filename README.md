@@ -13,7 +13,7 @@ Upon loading this application, you will see a text box in the upper left corner 
 
 Please click [here]() for the deployed application.
 
-![alt text](screenshot of application)
+![screenshot of weather dashboard](https://github.com/savannahmarshall/Weather-Dashboard/blob/main/assets/challenge-6%20screenshot.png)
 
 ## Credits
 * JavaScript
