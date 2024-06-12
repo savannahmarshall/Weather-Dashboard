@@ -44,8 +44,6 @@ function displayCurrentWeather(data) {
     const currentWeather = document.getElementById('current-weather');
     currentWeather.innerHTML = '';
 
-    console.log(data);
-
     // Create card element
     const weatherCard = document.createElement('div');
     weatherCard.classList.add('card', 'mb-3', 'border-dark');
@@ -221,13 +219,13 @@ function addToSearchHistory(city) {
     historyItem.textContent = city;
     historyItem.addEventListener('click', () => {
         fetchWeatherData(city);
-        // Store city in local storage
-        saveToLocalStorage(city);
     });
     searchHistory.appendChild(historyItem);
+
+    saveToLocalStorage(city); // Store city in local storage
 }
 
-//function to save city to local storage
+// Function to save city to local storage
 function saveToLocalStorage(city) {
     let searchHistory = localStorage.getItem('searchHistory');
     if (!searchHistory) {
@@ -235,12 +233,16 @@ function saveToLocalStorage(city) {
     } else {
         searchHistory = JSON.parse(searchHistory);
     }
-    //add city to search history
-    searchHistory.push(city);
-    //save updated search history to local storage
-    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    // Check if city is already in the history
+    if (!searchHistory.includes(city)) {
+        // Add city to search history
+        searchHistory.push(city);
+        // Save updated search history to local storage
+        localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
+    }
 }
 
+// Function to retrieve search history from local storage
 function retrieveFromLocalStorage() {
     let searchHistory = localStorage.getItem('searchHistory');
     if (!searchHistory) {
@@ -248,12 +250,10 @@ function retrieveFromLocalStorage() {
     } else {
         searchHistory = JSON.parse(searchHistory);
     }
-    if (searchHistory) {
-        // Add each city from local storage to search history
-        searchHistory.forEach(city => {
-            addToSearchHistory(city);
-        });
-    }
+    // Add each city from local storage to search history
+    searchHistory.forEach(city => {
+        addToSearchHistory(city);
+    });
 }
 
 // Call retrieveFromLocalStorage to populate search history on page load
