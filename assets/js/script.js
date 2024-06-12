@@ -1,6 +1,6 @@
 const apiKey = "aa86764387e724a2ce905596583a423b";
 
-// Define variable relating to button element
+// Define variable for submit button
 const submitButton = document.getElementById('submitButton');
 
 // Event listener to handle search request
@@ -20,7 +20,7 @@ function getApiInfo(event) {
 
 }
 
-    // Fetch request to fetch weather data from weather API based on the user input city name
+    // Fetch request to fetch data from weather API
     function fetchWeatherData(city) {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`)
     .then(response => {
@@ -65,6 +65,7 @@ function displayCurrentWeather(data) {
     const date = new Date(data.dt * 1000); // Convert UNIX timestamp to milliseconds
     cityName.innerHTML = `<strong>${data.name} (${date.toLocaleDateString()})</strong>`; // Display city name and date
 
+    //create and add weather icon element
     const weatherIcon = document.createElement('img');
     weatherIcon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
     weatherIcon.alt = data.weather[0].description;
@@ -162,14 +163,15 @@ function createFiveDayCard(data) {
     const description = data.weather[0].description;
     const icon = data.weather[0].icon; 
 
-    // Create card element
+    //create card element
     const fiveDayCard = document.createElement('div');
     fiveDayCard.classList.add('card', 'dark-blue-bg', 'mx-3');
 
-    // Create card body
+    //create card body
     const cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
 
+    //create weather icon element
     const weatherIcon = document.createElement('img');
     weatherIcon.src =`https://openweathermap.org/img/wn/${icon}@2x.png`;
     weatherIcon.alt = description;
