@@ -16,7 +16,9 @@ Please click [here]() for the deployed application.
 ![alt text](screenshot of application)
 
 ## Credits
-List technologies used (API, JavaScript)
+*JavaScript
+*OpenWeather API
+*Bootstrap
 
 ## License
 N/A
