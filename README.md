@@ -1,7 +1,7 @@
 # Weather-Dashboard
 
 ## Description
-This application functions as a weather dashboard that uses a 5-day weather forecast API to retrieve weather data for cities. As a traveler, you can see the weather outlook for multiple cities to plan your trip accordingly.
+This application functions as a weather dashboard that uses a 5-day weather forecast API to retrieve weather data for cities. As a traveler, you can see the weather outlook for multiple cities and plan your trip accordingly.
 
 While completing this application, I learned how to:
 
