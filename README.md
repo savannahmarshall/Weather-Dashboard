@@ -30,7 +30,7 @@ Beneath this box, you will see five dark blue cards representing the 5-day forec
 
 On the left-hand side of the page, your recent city searches are saved. You can select any of these saved cities to see the current and future weather conditions displayed once more. Your search history for saved cities will persist upon page refresh and in local storage.
 
-Please click [here](https://savannahmarshall.github.io/Weather-Dashboard/) for the deployed application.
+Please click [here](https://savannahmarshall.github.io/Weather-Dashboard/) to view the deployed application.
 
 ![screenshot of weather dashboard](https://github.com/savannahmarshall/Weather-Dashboard/blob/main/assets/challenge-6%20screenshot.png)
 
